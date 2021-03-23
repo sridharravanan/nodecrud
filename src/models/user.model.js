@@ -66,4 +66,16 @@ User.delete = function(id, result){
         }
     });
 };
+User.getUser = function (email, result) {
+    console.log(email)
+    dbConn.query("Select * from users WHERE email = ? ", [email], function (err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(err, null);
+        }
+        else{
+            result(null, res);
+        }
+    });
+};
 module.exports= User;
